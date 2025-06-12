@@ -147,9 +147,13 @@ void* get_proc(const char *namez) {
 
 int gladLoadGL(void) {
     int status = 0;
-
+	printf("--glad1 1--\n");
     if(open_gl()) {
+
+		printf("--glad1 2--\n");
         status = gladLoadGLLoader(&get_proc);
+
+		printf("--glad1 3--\n");
         close_gl();
     }
 

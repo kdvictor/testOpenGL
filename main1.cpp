@@ -124,7 +124,7 @@ int main() {
     if (!version) {
         fprintf(stderr, "\n严重错误: gladLoadGL完全失败\n");
     } else {
-        printf("加载OpenGL函数成功 (API %d.%d)\n", GLAD_VERSION_MAJOR(version), GLAD_VERSION_MINOR(version));
+        printf("加载OpenGL函数成功 (API %s)\n", version);
         printf("核心函数glGetString地址: %p\n", (void*)glGetString);
     }
     
