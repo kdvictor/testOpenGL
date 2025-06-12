@@ -2461,6 +2461,7 @@ static void find_coreGL(void) {
 
     version = (const char*) glGetString(GL_VERSION);
     if (!version) return;
+	printf("version: %s", version);
 
     for (i = 0;  prefixes[i];  i++) {
         const size_t length = strlen(prefixes[i]);
