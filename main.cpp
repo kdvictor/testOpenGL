@@ -107,12 +107,11 @@ int main() {
     }
 
     // 加载OpenGL函数
-    int version = gladLoadGL();
     printf("=== 开始GLAD加载测试（使用X11） ===\n");
-    if (!version) {
+    if (!gladLoadGL()) {
         fprintf(stderr, "[严重错误] gladLoadGL完全失败\n\n");
     } else {
-        printf("[成功] 加载OpenGL函数 (API %d)\n", status);
+        printf("[成功] 加载OpenGL函数 success\n");
     }
 
     // 检查核心函数是否加载成功
