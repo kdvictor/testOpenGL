@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <glad/glad.h>
+#include "glad.h"
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <GL/glx.h>
