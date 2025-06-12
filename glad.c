@@ -153,7 +153,7 @@ int gladLoadGL(void) {
 		printf("--glad1 2--\n");
         status = gladLoadGLLoader(&get_proc);
 
-		printf("--glad1 3--\n");
+		printf("--glad1 3 status: %d--\n", status);
         close_gl();
     }
 
@@ -2461,7 +2461,7 @@ static void find_coreGL(void) {
 
     version = (const char*) glGetString(GL_VERSION);
     if (!version) return;
-	printf("version: %s", version);
+	printf("version: %s\n", version);
 
     for (i = 0;  prefixes[i];  i++) {
         const size_t length = strlen(prefixes[i]);
