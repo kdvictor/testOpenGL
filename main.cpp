@@ -1,4 +1,4 @@
-#include "glad_core.h"
+#include "glad.h"
 #include <X11/X.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
@@ -11,6 +11,9 @@
 Display* display = NULL;
 Window win;
 GLXContext ctx;
+
+// 需要 GLX_ARB_create_context 扩展
+PFNGLXCREATECONTEXTATTRIBSARBPROC glXCreateContextAttribsARB = NULL;
 
 // 创建X窗口和OpenGL上下文
 static int createWindow(int width, int height) {
@@ -63,8 +66,22 @@ static int createWindow(int width, int height) {
     // 5. 设置窗口标题
     XStoreName(display, win, "GLAD Loader Test (X11)");
 
+    // 获取扩展函数
+    glXCreateContextAttribsARB = (PFNGLXCREATECONTEXTATTRIBSARBPROC)
+        glXGetProcAddressARB((const GLubyte*)"glXCreateContextAttribsARB");
+
+    int attribs[] = {
+        GLX_CONTEXT_MAJOR_VERSION_ARB, 4,  // 主版本
+        GLX_CONTEXT_MINOR_VERSION_ARB, 1,   // 次版本
+        GLX_CONTEXT_PROFILE_MASK_ARB, GLX_CONTEXT_CORE_PROFILE_BIT_ARB, // 核心模式
+        None
+    };
+
+    // 创建核心上下文
+    ctx = glXCreateContextAttribsARB(display, fbc[0], 0, True, attribs);
+
     // 6. 创建OpenGL上下文
-    ctx = glXCreateNewContext(display, fbc[0], GLX_RGBA_TYPE, NULL, True);
+    //ctx = glXCreateNewContext(display, fbc[0], GLX_RGBA_TYPE, NULL, True);
     if (!ctx) {
         fprintf(stderr, "无法创建OpenGL上下文\n");
         return 0;
