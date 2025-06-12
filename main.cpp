@@ -112,7 +112,7 @@ int main() {
     if (!version) {
         fprintf(stderr, "[严重错误] gladLoadGL完全失败\n\n");
     } else {
-        printf("[成功] 加载OpenGL函数 (API %s)\n", version);
+        printf("[成功] 加载OpenGL函数 (API %d)\n", status);
     }
 
     // 检查核心函数是否加载成功
